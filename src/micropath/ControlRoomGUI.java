@@ -19,15 +19,17 @@ import javax.swing.JScrollPane;
  *
  * @author ArinjayaKhare1
  */
-public class ControlRoomGUI extends javax.swing.JFrame {
+public class ControlRoomGUI extends javax.swing.JFrame implements Runnable {
 
     /**
      * Creates new form ControlRoomGUI
      */
+    Thread t=new Thread(this);
     DefaultListModel<CustomTrainArrayList> trainList= new DefaultListModel<CustomTrainArrayList>();
     String name;
     public ControlRoomGUI() {
         initComponents();
+        t.start();
     }
     public ControlRoomGUI(String x) {
         this();
@@ -74,6 +76,20 @@ public class ControlRoomGUI extends javax.swing.JFrame {
        jScrollPane1.setViewportView(TrainTableData);
        TrainTableData.setCellRenderer(new TrainDataRenderer(name));
     }
+    public void run()
+    {
+        try{
+            Thread.sleep(10000);
+        }
+        catch(InterruptedException e)
+        {
+        }
+        ControlRoomGUI clr = new ControlRoomGUI(name);
+        this.setVisible(false);
+        clr.setVisible(true);
+        
+    }
+        
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
