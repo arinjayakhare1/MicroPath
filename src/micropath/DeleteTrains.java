@@ -23,7 +23,9 @@ public class DeleteTrains extends javax.swing.JFrame {
      * Creates new form AddTrains
      */
     String name;
-    
+    java.sql.Connection conn;
+    String deletequery;    
+    String searchquery;
     public DeleteTrains() {
         initComponents();
     }
@@ -31,7 +33,8 @@ public class DeleteTrains extends javax.swing.JFrame {
     public DeleteTrains(String s) {
         this();
         name=s;
-        
+        deletequery="DELETE FROM "+name+"  WHERE `train_no`=?";  
+        searchquery="SELECT * from "+name+" WHERE train_no=?";
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -147,10 +150,8 @@ public class DeleteTrains extends javax.swing.JFrame {
     
     public boolean record_exists(String new_train_number)
     {
-        try{           
-       Class.forName("com.mysql.jdbc.Driver");  // MySQL database connection
-       java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo?" + "user=root&password=root");     
-       java.sql.PreparedStatement pst = conn.prepareStatement("SELECT * from train_data_control_room WHERE train_no=? ");
+        try{              
+       java.sql.PreparedStatement pst = conn.prepareStatement(searchquery);
        pst.setString(1, new_train_number); 
        ResultSet rs = pst.executeQuery();                        
        if(rs.next())            
@@ -182,7 +183,7 @@ public class DeleteTrains extends javax.swing.JFrame {
             String SQL;
             PreparedStatement pstmt;
             Class.forName("com.mysql.jdbc.Driver");  // MySQL database connection
-            java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo?" + "user=root&password=root");
+            conn = DriverManager.getConnection("jdbc:mysql://sql12.freesqldatabase.com:3306/sql12169348?","sql12169348","G6xuvh91we");
             if(!record_exists(new_train_number))
             {   
                 JOptionPane.showMessageDialog(null, "Record doesnt Exists");
@@ -192,8 +193,8 @@ public class DeleteTrains extends javax.swing.JFrame {
             }
             else
             {
-                SQL="DELETE FROM `demo`.`train_data_control_room`  WHERE `train_no`=?";
-                pstmt = conn.prepareStatement(SQL);
+                
+                pstmt = conn.prepareStatement(deletequery);
                 pstmt.setString(1, new_train_number);
                 pstmt.executeUpdate();
                 pstmt.close();

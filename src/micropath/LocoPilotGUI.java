@@ -17,7 +17,7 @@ public class LocoPilotGUI extends javax.swing.JFrame {
     public LocoPilotGUI(String x) {
         this();
         //initComponents();
-        DriverName.setText("Welcome " + x);
+        DriverName.setText("Welcome Loco Pilot of " + x);
     }
     public LocoPilotGUI() {
         initComponents();

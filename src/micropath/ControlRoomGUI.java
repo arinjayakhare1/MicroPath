@@ -19,29 +19,37 @@ import javax.swing.JScrollPane;
  *
  * @author ArinjayaKhare1
  */
-public class ControlRoomGUI extends javax.swing.JFrame implements Runnable {
+public class ControlRoomGUI extends javax.swing.JFrame  {
 
     /**
      * Creates new form ControlRoomGUI
      */
-    Thread t=new Thread(this);
+    
     DefaultListModel<CustomTrainArrayList> trainList= new DefaultListModel<CustomTrainArrayList>();
     String name;
     public ControlRoomGUI() {
         initComponents();
-        t.start();
+        
     }
+    String query2;
+    String query;
+    java.sql.Connection conn;
     public ControlRoomGUI(String x) {
         this();
         name=x;
-        ControlRoomName.setText("Welcome "+x);
+        ControlRoomName.setText("Welcome Employees of "+x.toUpperCase()+" Control Room");
+        query="Select * from "+name;
+        query2="UPDATE "+name+" SET `signal`='0' WHERE `signal`='1' ";
         String trainNo="",Signals="";
+        
+                
         try
         {
             ResultSet rs;
             Class.forName("com.mysql.jdbc.Driver");  // MySQL database connection
-            java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo?" + "user=root&password=root");
-            java.sql.PreparedStatement pst = conn.prepareStatement("Select * from train_data_control_room ");
+            conn = DriverManager.getConnection("jdbc:mysql://sql12.freesqldatabase.com:3306/sql12169348?","sql12169348","G6xuvh91we");
+            java.sql.PreparedStatement pst = conn.prepareStatement(query);
+           
             rs=pst.executeQuery();
             while(rs.next())
             {
@@ -76,19 +84,7 @@ public class ControlRoomGUI extends javax.swing.JFrame implements Runnable {
        jScrollPane1.setViewportView(TrainTableData);
        TrainTableData.setCellRenderer(new TrainDataRenderer(name));
     }
-    public void run()
-    {
-        try{
-            Thread.sleep(10000);
-        }
-        catch(InterruptedException e)
-        {
-        }
-        ControlRoomGUI clr = new ControlRoomGUI(name);
-        this.setVisible(false);
-        clr.setVisible(true);
-        
-    }
+    
         
     /**
      * This method is called from within the constructor to initialize the form.
@@ -273,9 +269,9 @@ public class ControlRoomGUI extends javax.swing.JFrame implements Runnable {
             String new_train_number,new_train_signal;
             
             ResultSet rs;
-            Class.forName("com.mysql.jdbc.Driver");  // MySQL database connection
-            java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo?" + "user=root&password=root");
-            PreparedStatement ps = conn.prepareStatement("UPDATE `demo`.`train_data_control_room` SET `signal`='0' WHERE `signal`='1' ");
+            //Class.forName("com.mysql.jdbc.Driver");  // MySQL database connection
+            //java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://sql12.freesqldatabase.com:3306/sql12169348?","sql12169348","G6xuvh91we");
+            PreparedStatement ps = conn.prepareStatement(query2);
             ps.executeUpdate();
             ps.close();
             ControlRoomGUI crg=new ControlRoomGUI(name);

@@ -32,7 +32,8 @@ public class TrainDataRenderer extends JLabel implements ListCellRenderer<Custom
     Color backgroundSelectionColor;
     Color backgroundNonSelectionColor;
     String name;
-
+    String query1;
+    java.sql.Connection conn;
     public TrainDataRenderer(String p)
     {
         x.setHorizontalAlignment(JLabel.LEFT);
@@ -43,6 +44,7 @@ public class TrainDataRenderer extends JLabel implements ListCellRenderer<Custom
         backgroundSelectionColor = defaultRenderer.getBackgroundSelectionColor();
         backgroundNonSelectionColor = defaultRenderer.getBackgroundNonSelectionColor();
         name=p;
+        query1="UPDATE "+p+" SET `signal`=? WHERE `train_no`=?";
     }
     @Override
     public Component getListCellRendererComponent(JList<? extends CustomTrainArrayList> list, CustomTrainArrayList TrainSignalData, int index,
@@ -77,9 +79,9 @@ public class TrainDataRenderer extends JLabel implements ListCellRenderer<Custom
                 String SQL;
                 PreparedStatement pstmt;
                 Class.forName("com.mysql.jdbc.Driver");  // MySQL database connection
-                java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo?" + "user=root&password=root");
-                SQL="UPDATE `demo`.`train_data_control_room` SET `signal`=? WHERE `train_no`=?";
-                pstmt = conn.prepareStatement(SQL);
+                conn = DriverManager.getConnection("jdbc:mysql://sql12.freesqldatabase.com:3306/sql12169348?","sql12169348","G6xuvh91we");
+                
+                pstmt = conn.prepareStatement(query1);
                 pstmt.setString(1, "1");
                 pstmt.setString(2, this.x.getText());
                 pstmt.executeUpdate();
@@ -100,10 +102,8 @@ public class TrainDataRenderer extends JLabel implements ListCellRenderer<Custom
                 ResultSet rs;
                 String SQL;
                 PreparedStatement pstmt;
-                Class.forName("com.mysql.jdbc.Driver");  // MySQL database connection
-                java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo?" + "user=root&password=root");
-                SQL="UPDATE `demo`.`train_data_control_room` SET `signal`=? WHERE `train_no`=?";
-                pstmt = conn.prepareStatement(SQL);
+                
+                pstmt = conn.prepareStatement(query1);
                 pstmt.setString(1, "0");
                 pstmt.setString(2, this.x.getText());
                 pstmt.executeUpdate();
@@ -126,10 +126,8 @@ public class TrainDataRenderer extends JLabel implements ListCellRenderer<Custom
                 ResultSet rs;
                 String SQL;
                 PreparedStatement pstmt;
-                Class.forName("com.mysql.jdbc.Driver");  // MySQL database connection
-                java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo?" + "user=root&password=root");
-                SQL="UPDATE `demo`.`train_data_control_room` SET `signal`=? WHERE `train_no`=?";
-                pstmt = conn.prepareStatement(SQL);
+                
+                pstmt = conn.prepareStatement(query1);
                 if(this.y.getText().compareTo(green)==0)
                 {
                 pstmt.setString(1, "1");

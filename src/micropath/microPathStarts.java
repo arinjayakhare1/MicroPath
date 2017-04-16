@@ -27,7 +27,7 @@ public class microPathStarts extends javax.swing.JFrame {
    private boolean validate_login(String username,String password) {
    try{           
        Class.forName("com.mysql.jdbc.Driver");  // MySQL database connection
-       java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo?" + "user=root&password=root");     
+       java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://sql12.freesqldatabase.com:3306/sql12169348?","sql12169348","G6xuvh91we");     
        java.sql.PreparedStatement pst = conn.prepareStatement("Select * from login_data where username=? and password=?");
        pst.setString(1, username); 
        pst.setString(2, password);
@@ -46,7 +46,7 @@ public class microPathStarts extends javax.swing.JFrame {
    try{           
        ResultSet rs;
        Class.forName("com.mysql.jdbc.Driver");  // MySQL database connection
-       java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo?" + "user=root&password=root");   
+       java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://sql12.freesqldatabase.com:3306/sql12169348?","sql12169348","G6xuvh91we");   
        if(laccess==1)
        {
            java.sql.PreparedStatement pst = conn.prepareStatement("Select * from login_data where username=? and password=? and laccess=? ");
@@ -285,61 +285,7 @@ public class microPathStarts extends javax.swing.JFrame {
        }
           
    }        
-        /*
-        if(userGet.equals("Arinjaya")&&passGet.equals("12345"))
-        {
-            if(selectedUser.equals("Loco Pilot"))
-            {
-                LocoPilotGUI lpg=new LocoPilotGUI(userGet);
-                this.setVisible(false);
-                lpg.setVisible(true);
-            }
-            else
-            {
-                ControlRoomGUI crg=new ControlRoomGUI(userGet);
-                this.setVisible(false);
-                crg.setVisible(true);
-            }
-        }
-        else if(userGet.equals("Daksh")&&passGet.equals("12345"))
-        {
-            if(selectedUser.equals("Loco Pilot"))
-            {
-                LocoPilotGUI lpg=new LocoPilotGUI(userGet);
-                this.setVisible(false);
-                lpg.setVisible(true);
-            }
-            else
-            {
-                InvalidLogin invalidDisplay=new InvalidLogin("You Only have Loco Pilot Access");
-                this.setVisible(false);
-                invalidDisplay.setVisible(true);
-            }
-        }
-        else if(userGet.equals("Tarun")&&passGet.equals("12345"))
-        {
-            if(selectedUser.equals("Control Room Operator"))
-            {
-                ControlRoomGUI crg=new ControlRoomGUI(userGet);
-                this.setVisible(false);
-                crg.setVisible(true);
-            }
-            else
-            {
-                
-                InvalidLogin invalidDisplay=new InvalidLogin("You only have Control Room Access");
-                this.setVisible(false);
-                invalidDisplay.setVisible(true);
-            }
-        }
-        else
-        {
-            InvalidLogin invalidDisplay=new InvalidLogin("Wrong Username or Password");
-            this.setVisible(false);
-            invalidDisplay.setVisible(true);
-            
-        }     
-        */
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

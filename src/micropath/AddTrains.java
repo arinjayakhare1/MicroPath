@@ -24,6 +24,8 @@ public class AddTrains extends javax.swing.JFrame {
      */
     String name;
     int choice=0;
+     java.sql.Connection conn ;
+     String addquery,searchquery,updatequery;
     public AddTrains() {
         initComponents();
     }
@@ -31,12 +33,18 @@ public class AddTrains extends javax.swing.JFrame {
         this();
         name=s;
         choice=x;
+        addquery="INSERT INTO "+name+" VALUES (?, ?)";
+        searchquery="SELECT * from "+name+" WHERE train_no=? ";
+        updatequery="UPDATE "+name+" SET `signal`=? WHERE `train_no`=?";    
     }
     public AddTrains(String s) {
         this();
         name=s;
-        
+        addquery="INSERT INTO "+name+" VALUES (?, ?)";
+        searchquery="SELECT * from "+name+" WHERE train_no=? ";
+
     }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -165,9 +173,7 @@ public class AddTrains extends javax.swing.JFrame {
     public boolean record_exists(String new_train_number)
     {
         try{           
-       Class.forName("com.mysql.jdbc.Driver");  // MySQL database connection
-       java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo?" + "user=root&password=root");     
-       java.sql.PreparedStatement pst = conn.prepareStatement("SELECT * from train_data_control_room WHERE train_no=? ");
+       java.sql.PreparedStatement pst = conn.prepareStatement(searchquery);
        pst.setString(1, new_train_number); 
       
        ResultSet rs = pst.executeQuery();                        
@@ -198,7 +204,7 @@ public class AddTrains extends javax.swing.JFrame {
             String SQL;
             PreparedStatement pstmt;
             Class.forName("com.mysql.jdbc.Driver");  // MySQL database connection
-            java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/demo?" + "user=root&password=root");
+            conn = DriverManager.getConnection("jdbc:mysql://sql12.freesqldatabase.com:3306/sql12169348?","sql12169348","G6xuvh91we");
             if(!record_exists(new_train_number))
             {   if(choice==1)
                 {
@@ -208,8 +214,8 @@ public class AddTrains extends javax.swing.JFrame {
                     add.setVisible(true);
                 }
             else if(choice==0){
-                 SQL = "INSERT INTO train_data_control_room VALUES (?, ?)";
-                 pstmt = conn.prepareStatement(SQL);
+                 
+                 pstmt = conn.prepareStatement(addquery);
                  pstmt.setString(1, new_train_number);
                  pstmt.setString(2, new_train_signal);
                  pstmt.executeUpdate();
@@ -222,8 +228,8 @@ public class AddTrains extends javax.swing.JFrame {
             else
             {
                 if(choice==1){
-                SQL="UPDATE `demo`.`train_data_control_room` SET `signal`=? WHERE `train_no`=?";
-                pstmt = conn.prepareStatement(SQL);
+                
+                pstmt = conn.prepareStatement(updatequery);
                 pstmt.setString(1, new_train_signal);
                 pstmt.setString(2, new_train_number);
                 pstmt.executeUpdate();
