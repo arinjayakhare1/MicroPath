@@ -10,13 +10,12 @@ Login for 2 trains is provided-
 2)11112
 Password for both is 12345
 
-Server Specifications-
 Host: sql12.freesqldatabase.com
-Database name: sql12169348
-Database user: sql12169348
-Database password: G6xuvh91we
+Database name: sql12169908
+Database user: sql12169908
+Database password: 4sBAijYEGl
 Port number: 3306
 
-jdbc connection string-"jdbc:mysql://sql12.freesqldatabase.com:3306/sql12169348?","sql12169348","G6xuvh91we"
+jdbc connection string-"jdbc:mysql://sql12.freesqldatabase.com:3306/sql12169908?","sql12169908","4sBAijYEGl"
 
 Server is located at http://www.phpmyadmin.co/ with above specifications
