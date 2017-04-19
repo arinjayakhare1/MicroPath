@@ -4,13 +4,16 @@
  * and open the template in the editor.
  */
 package micropath;
-
+import com.fazecast.jSerialComm.*;
+import java.util.*;
 /**
  *
  * @author ArinjayaKhare1
  */
-public class LocoPilotGUI extends javax.swing.JFrame {
-
+public class LocoPilotGUI extends javax.swing.JFrame implements Runnable{
+    SerialPort chosenPort;
+    String received;
+    Thread t;
     /**
      * Creates new form LocoPilotGUI
      */
@@ -21,7 +24,28 @@ public class LocoPilotGUI extends javax.swing.JFrame {
     }
     public LocoPilotGUI() {
         initComponents();
+        received = "";
+        SerialPort [] portlist = SerialPort.getCommPorts();
+        chosenPort = portlist [0];
+        Thread  t = new Thread (this) ; 
+        t.start();
         
+    }
+    public void run()
+    {
+        chosenPort.openPort();
+        try {Thread.sleep(2000);} catch (Exception e){System.out.println("Port not opened properly.");}
+        Scanner data = new Scanner (chosenPort.getInputStream() );
+        while (data.hasNext())
+        {
+            received += data.nextLine();
+        }
+        if(received!= "")
+        {
+            TrainData.setText(received);
+            received = "";
+            
+        }
     }
     
 
