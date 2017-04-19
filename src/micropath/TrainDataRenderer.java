@@ -79,7 +79,7 @@ public class TrainDataRenderer extends JLabel implements ListCellRenderer<Custom
                 String SQL;
                 PreparedStatement pstmt;
                 Class.forName("com.mysql.jdbc.Driver");  // MySQL database connection
-                conn = DriverManager.getConnection("jdbc:mysql://sql12.freesqldatabase.com:3306/sql12169348?","sql12169348","G6xuvh91we");
+                conn = DriverManager.getConnection("jdbc:mysql://sql12.freesqldatabase.com:3306/sql12169908?","sql12169908","4sBAijYEGl");
                 
                 pstmt = conn.prepareStatement(query1);
                 pstmt.setString(1, "1");

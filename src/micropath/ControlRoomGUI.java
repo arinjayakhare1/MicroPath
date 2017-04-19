@@ -47,7 +47,7 @@ public class ControlRoomGUI extends javax.swing.JFrame  {
         {
             ResultSet rs;
             Class.forName("com.mysql.jdbc.Driver");  // MySQL database connection
-            conn = DriverManager.getConnection("jdbc:mysql://sql12.freesqldatabase.com:3306/sql12169348?","sql12169348","G6xuvh91we");
+            conn = DriverManager.getConnection("jdbc:mysql://sql12.freesqldatabase.com:3306/sql12169908?","sql12169908","4sBAijYEGl");
             java.sql.PreparedStatement pst = conn.prepareStatement(query);
            
             rs=pst.executeQuery();

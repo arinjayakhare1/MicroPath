@@ -204,7 +204,7 @@ public class AddTrains extends javax.swing.JFrame {
             String SQL;
             PreparedStatement pstmt;
             Class.forName("com.mysql.jdbc.Driver");  // MySQL database connection
-            conn = DriverManager.getConnection("jdbc:mysql://sql12.freesqldatabase.com:3306/sql12169348?","sql12169348","G6xuvh91we");
+            conn = DriverManager.getConnection("jdbc:mysql://sql12.freesqldatabase.com:3306/sql12169908?","sql12169908","4sBAijYEGl");
             if(!record_exists(new_train_number))
             {   if(choice==1)
                 {

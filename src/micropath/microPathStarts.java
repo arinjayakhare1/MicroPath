@@ -27,7 +27,7 @@ public class microPathStarts extends javax.swing.JFrame {
    private boolean validate_login(String username,String password) {
    try{           
        Class.forName("com.mysql.jdbc.Driver");  // MySQL database connection
-       java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://sql12.freesqldatabase.com:3306/sql12169348?","sql12169348","G6xuvh91we");     
+       java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://sql12.freesqldatabase.com:3306/sql12169908?","sql12169908","4sBAijYEGl");     
        java.sql.PreparedStatement pst = conn.prepareStatement("Select * from login_data where username=? and password=?");
        pst.setString(1, username); 
        pst.setString(2, password);
@@ -46,7 +46,7 @@ public class microPathStarts extends javax.swing.JFrame {
    try{           
        ResultSet rs;
        Class.forName("com.mysql.jdbc.Driver");  // MySQL database connection
-       java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://sql12.freesqldatabase.com:3306/sql12169348?","sql12169348","G6xuvh91we");   
+       java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://sql12.freesqldatabase.com:3306/sql12169908?","sql12169908","4sBAijYEGl");   
        if(laccess==1)
        {
            java.sql.PreparedStatement pst = conn.prepareStatement("Select * from login_data where username=? and password=? and laccess=? ");
