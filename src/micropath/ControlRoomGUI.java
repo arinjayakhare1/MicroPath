@@ -86,7 +86,7 @@ public class ControlRoomGUI extends javax.swing.JFrame  {
         
        jScrollPane1.setViewportView(TrainTableData);
        TrainTableData.setCellRenderer(new TrainDataRenderer(name));
-       //Send_signal send = new Send_signal(trainNo);//Use count
+       Send_signal send = new Send_signal(trainNo);//Use count
     }
     
         
