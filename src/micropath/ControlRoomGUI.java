@@ -57,6 +57,7 @@ public class ControlRoomGUI extends javax.swing.JFrame  {
                 String r,q,s;
                 r=rs.getString("train_no");
                 q=rs.getString("signal");
+                int t=rs.getInt("speed_limit");
                 if(q.compareTo("0")==0)
                 {
                     s="RED";
@@ -65,7 +66,7 @@ public class ControlRoomGUI extends javax.swing.JFrame  {
                 {
                     s="GREEN";
                 }
-                trainNo=trainNo+r+"+" + q+ " ";
+                trainNo=trainNo+r+"+" + q+"+"+t+ " ";
                 count++;
                 trainList.addElement(new CustomTrainArrayList(r,s));
                 /*
@@ -85,7 +86,7 @@ public class ControlRoomGUI extends javax.swing.JFrame  {
         
        jScrollPane1.setViewportView(TrainTableData);
        TrainTableData.setCellRenderer(new TrainDataRenderer(name));
-       Send_signal send = new Send_signal(trainNo);//Use count
+       //Send_signal send = new Send_signal(trainNo);//Use count
     }
     
         

@@ -33,14 +33,14 @@ public class AddTrains extends javax.swing.JFrame {
         this();
         name=s;
         choice=x;
-        addquery="INSERT INTO "+name+" VALUES (?, ?)";
+        addquery="INSERT INTO "+name+" VALUES (?, ?,?)";
         searchquery="SELECT * from "+name+" WHERE train_no=? ";
         updatequery="UPDATE "+name+" SET `signal`=? WHERE `train_no`=?";    
     }
     public AddTrains(String s) {
         this();
         name=s;
-        addquery="INSERT INTO "+name+" VALUES (?, ?)";
+        addquery="INSERT INTO "+name+" VALUES (?, ?,?)";
         searchquery="SELECT * from "+name+" WHERE train_no=? ";
 
     }
@@ -62,6 +62,8 @@ public class AddTrains extends javax.swing.JFrame {
         ExitButton = new javax.swing.JButton();
         AddTrainButton = new javax.swing.JButton();
         BackButton = new javax.swing.JButton();
+        speed_limit_input = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Add Trains");
@@ -95,6 +97,9 @@ public class AddTrains extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setText("Enter Speed Limit");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -109,17 +114,19 @@ public class AddTrains extends javax.swing.JFrame {
                 .addContainerGap(107, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(AddTrainButton, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(384, 384, 384))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(42, 42, 42)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(TrainNumber)
-                            .addComponent(TrainSignal, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE))
-                        .addGap(167, 167, 167))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(AddTrainButton, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(386, 386, 386))))
+                            .addComponent(TrainSignal)
+                            .addComponent(speed_limit_input, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(167, 167, 167))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,9 +139,13 @@ public class AddTrains extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TrainSignal, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(88, 88, 88)
+                .addGap(38, 38, 38)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(speed_limit_input, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addComponent(AddTrainButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 191, Short.MAX_VALUE)
+                .addGap(133, 133, 133)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ExitButton)
                     .addComponent(BackButton))
@@ -194,6 +205,7 @@ public class AddTrains extends javax.swing.JFrame {
             String new_train_number,new_train_signal;
             new_train_number=TrainNumber.getText();
             new_train_signal=TrainSignal.getText();
+            String new_speed_limit=speed_limit_input.getText();
             if(new_train_number.length()==0||new_train_signal.length()==0)
             {
                 JOptionPane.showMessageDialog(null, "Empty fields detected ! Please fill up all fields");
@@ -218,6 +230,7 @@ public class AddTrains extends javax.swing.JFrame {
                  pstmt = conn.prepareStatement(addquery);
                  pstmt.setString(1, new_train_number);
                  pstmt.setString(2, new_train_signal);
+                 pstmt.setInt(3,Integer.valueOf(new_speed_limit));
                  pstmt.executeUpdate();
                  pstmt.close();
                  ControlRoomGUI crg=new ControlRoomGUI(name);
@@ -299,6 +312,8 @@ public class AddTrains extends javax.swing.JFrame {
     private javax.swing.JTextField TrainSignal;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField speed_limit_input;
     // End of variables declaration//GEN-END:variables
 }

@@ -55,20 +55,22 @@
                   <EmptySpace pref="107" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
+                          <Component id="AddTrainButton" min="-2" pref="134" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="384" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel1" min="-2" pref="314" max="-2" attributes="0"/>
                               <Component id="jLabel2" min="-2" pref="337" max="-2" attributes="0"/>
+                              <Component id="jLabel3" min="-2" pref="337" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="TrainNumber" max="32767" attributes="0"/>
-                              <Component id="TrainSignal" pref="283" max="32767" attributes="0"/>
+                              <Component id="TrainSignal" max="32767" attributes="0"/>
+                              <Component id="speed_limit_input" alignment="0" min="-2" pref="283" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="167" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="AddTrainButton" min="-2" pref="134" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="386" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -87,9 +89,14 @@
                       <Component id="jLabel2" alignment="3" min="-2" pref="46" max="-2" attributes="0"/>
                       <Component id="TrainSignal" alignment="3" min="-2" pref="46" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="speed_limit_input" pref="47" max="32767" attributes="0"/>
+                      <Component id="jLabel3" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="61" max="32767" attributes="0"/>
                   <Component id="AddTrainButton" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="191" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="133" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="ExitButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="BackButton" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -143,6 +150,16 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BackButtonActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="speed_limit_input">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel3">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="18" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Enter Speed Limit"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
