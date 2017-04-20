@@ -27,7 +27,9 @@ public class ControlRoomGUI extends javax.swing.JFrame  {
     
     DefaultListModel<CustomTrainArrayList> trainList= new DefaultListModel<CustomTrainArrayList>();
     String name;
+    int count;
     public ControlRoomGUI() {
+        count=0;
         initComponents();
         
     }
@@ -45,7 +47,7 @@ public class ControlRoomGUI extends javax.swing.JFrame  {
                 
         try
         {   
-            int count=0;
+           
             ResultSet rs;
             Class.forName("com.mysql.jdbc.Driver");  // MySQL database connection
             conn = DriverManager.getConnection("jdbc:mysql://sql12.freesqldatabase.com:3306/sql12169908?","sql12169908","4sBAijYEGl");
@@ -58,6 +60,11 @@ public class ControlRoomGUI extends javax.swing.JFrame  {
                 r=rs.getString("train_no");
                 q=rs.getString("signal");
                 int t=rs.getInt("speed_limit");
+                String T;
+                if(t<100)
+                    T="0"+Integer.toString(t);
+                else
+                    T=Integer.toString(t);
                 if(q.compareTo("0")==0)
                 {
                     s="RED";
@@ -66,7 +73,7 @@ public class ControlRoomGUI extends javax.swing.JFrame  {
                 {
                     s="GREEN";
                 }
-                trainNo=trainNo+r+"+" + q+"+"+t+ " ";
+                trainNo=trainNo+r+"+" + q+"+"+T+ " ";
                 count++;
                 trainList.addElement(new CustomTrainArrayList(r,s));
                 /*
@@ -86,6 +93,10 @@ public class ControlRoomGUI extends javax.swing.JFrame  {
         
        jScrollPane1.setViewportView(TrainTableData);
        TrainTableData.setCellRenderer(new TrainDataRenderer(name));
+       if(count < 10)
+           trainNo= "0"+Integer.toString(count)+"+"+trainNo;
+       else
+            trainNo= Integer.toString(count)+"+"+trainNo;
        Send_signal send = new Send_signal(trainNo);//Use count
     }
     

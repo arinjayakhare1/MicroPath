@@ -21,6 +21,7 @@ public class LocoPilotGUI extends javax.swing.JFrame implements Runnable{
         this();
         //initComponents();
         DriverName.setText("Welcome Loco Pilot of " + x);
+        Send_signal sig = new Send_signal(x);
     }
     public LocoPilotGUI() {
         initComponents();
